@@ -1,0 +1,32 @@
+-lm -pthread -O3 -march=native -Wall -funroll-loops -Wno-unused-result -g
+
+word2vec.c -> the orignal source code.
+
+word2vec_v1.c -> add supervised information to loss function.  ps.only the word vectors in windows are updated every time.(exclude the current word)
+		excute format:  ./word2vec_v1 -train ../data/tweet/NRC140.en.token.label -output ../data/tweet/NRC140_v1.txt -min-count 5 -size 300 -binary 0 -iter 10 -cbow 1 -hs 1 -negative 0 -threads 12
+
+word2vec_v2.c -> add supervised information to loss function.  ps.the word vectors in whole sentence are updated every time.
+		excute format:  ./word2vec_v2 -train ../data/tweet/NRC140.en.token.label -output ../data/tweet/NRC140_v2.txt -min-count 5 -size 300 -binary 0 -iter 10 -cbow 1 -hs 1 -negative 0 -threads 12
+
+word2vec_v3.c -> add supervised information, the words in windows are updated and updated the vector while search in huffman. 
+		excute format:  ./word2vec_v3 -train ../data/tweet/NRC140.en.token.label -output ../data/tweet/NRC140_v3.txt -min-count 5 -size 300 -binary 0 -iter 5 -cbow 1 -hs 1 -negative 0 -threads 12
+
+word2vec_v4.c -> add supervised information, update the word vectors by contextual loss function and sentiment loss function meanwhile. 
+		excute format:  ./word2vec_v4 -train ../data/tweet/NRC140.en.token.label -output ../data/tweet/NRC140_v4.txt -min-count 5 -size 300 -binary 0 -iter 5 -cbow 1 -hs 1 -negative 0 -threads 12
+
+word2vec_v5.c -> add supervised information as word2vec_v1, initialize the syn2 to 0. 
+		excute format:  ./word2vec_v5 -train ../data/tweet/NRC140.en.token.label -output ../data/tweet/NRC140_v5.txt -min-count 5 -size 300 -binary 0 -iter 5 -cbow 1 -hs 1 -negative 0 -threads 12
+
+word2vec_v6.c -> add supervised information to loss function.  ps.only the word vectors in windows are updated every time.(all)
+		excute format:  ./word2vec_v1 -train ../data/tweet/NRC140.en.token.label -output ../data/tweet/NRC140_v6.txt -min-count 5 -size 300 -binary 0 -iter 10 -cbow 1 -hs 1 -negative 10 -threads 12
+
+		
+word2vec_v7.c -> separate the sentiment and sematic vector.
+		excute format:  ./word2vec_v7 -train ../data/tweet/NRC140.en.token.label -output ../data/tweet/NRC140_v7.txt -min-count 5 -size 300 -binary 0 -iter 10 -cbow 1 -hs 1 -negative 10 -threads 12
+
+
+word2vec_v8.c -> separate the sentiment and sematic vector. add negative sampling for updating and iterations is the sematic iterations.
+		excute format:  ./word2vec_v8 -train ../data/tweet/NRC140.en.token.label -output ../data/tweet/NRC140_v7.txt -min-count 5 -size 300 -binary 0 -iter 10 -cbow 1 -hs 1 -negative 10 -threads 12
+
+word2vec_v9.c -> add negative sampling to sentiment update, only one time
+		excute format:  ./word2vec_v9 -train ../data/tweet/NRC140.en.token.label -output ../data/tweet/vectors/NRC140_v9_100_6.txt -min-count 5 -size 50 -binary 0 -iter 10 -cbow 1 -hs 1 -negative 5 -threads 12
